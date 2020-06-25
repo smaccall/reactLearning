@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="id=edge">
+    <!--  REACT LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Let's React!</title>
+</head>
+<body>
+    <!-- DEISGNATED LOCATION TO INSERT REACT CONTENT -->
+    <div id="app">
+        React has not rendered yet
+    </div>
+        
+    <!-- JAVA SCRIPT -->
+    <script type="text/babel">
+    class DinnerVote extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                total: 0
+            }
+        }
+        onButtonClickAdd(){
+            this.setState({
+               total: this.state.total + 1
+            });
+        }
+        onButtonClickDelete(){
+            this.setState({
+               total: this.state.total - 1
+            });
+        }
+        render(){
+            var dinnerVoteStyle= {
+                display: "inline-block",
+                textAlign: "center",
+                margin: 50,
+                height: 500,
+                width: 300,
+                padding: 0,
+                backgroundColor: "#EEE",
+                WebkitFilter: "drop-shade(0px 0px 5px #555)",
+                filter: "drop-shade(0px 0px 5px #555)"
+            }
+            var foodStyle={
+                height:200,
+                width:200,
+                margin:20
+            }
+            return(
+                <div style={dinnerVoteStyle}>
+                    <img alt="food image" style={foodStyle} src={this.props.img}/>
+                    <h1>Dinner Time</h1>
+                    <p>Vote Here if you want this</p>
+                    <button onClick={() => this.onButtonClickAdd()}>+1</button>
+                    <p>Vote Here if you don't want this</p>
+                    <button onClick={() => this.onButtonClickDelete()}>-1</button>
+                    <p>Total: {this.state.total}</p>
+                </div>
+            );
+        }
+    }
+
+
+    // Render React to the DOM - will accept 2 arguments (react what, react where)
+    ReactDOM.render(
+        <div>
+            <DinnerVote img="https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
+            <DinnerVote img="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
+            <DinnerVote img="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
+        </div>, 
+        document.getElementById('app')    
+    );
+
+    </script>
+
+</body>
+</html>
